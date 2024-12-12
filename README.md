@@ -15,6 +15,11 @@ A browser-based RPG game built with vanilla JavaScript, HTML, and CSS. This proj
   - Random potions (based on monster level)
   - Bonus gold (with rare drop chances)
 - **Shop System**: Buy weapons and potions to help in your journey
+- **Auto-Save System**: Game progress is automatically saved after:
+  - Defeating monsters
+  - Buying items
+  - Using potions
+  - Your progress persists even after refreshing the page!
 
 ## How to Play
 
@@ -23,6 +28,7 @@ A browser-based RPG game built with vanilla JavaScript, HTML, and CSS. This proj
 3. Buy better weapons and potions from the shop
 4. Take on stronger monsters as you level up
 5. Progress through increasingly difficult challenges
+6. Don't worry about losing progress - the game auto-saves!
 
 ## Technical Details
 
@@ -31,6 +37,7 @@ A browser-based RPG game built with vanilla JavaScript, HTML, and CSS. This proj
 - Object-oriented design with classes
 - No external dependencies required
 - Runs directly in the browser
+- Uses localStorage for game state persistence
 
 ## Getting Started
 

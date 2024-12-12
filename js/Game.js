@@ -27,6 +27,49 @@ export class Game {
     this.attack = this.attack.bind(this);
     this.run = this.run.bind(this);
     this.fightMonster = this.fightMonster.bind(this);
+
+    // Load saved game if exists
+    this.loadGame();
+  }
+
+  loadGame() {
+    const savedGame = localStorage.getItem('rpgGameSave');
+    if (savedGame) {
+      const gameData = JSON.parse(savedGame);
+      
+      // Restore player stats
+      this.player.level = gameData.player.level;
+      this.player.xp = gameData.player.xp;
+      this.player.gold = gameData.player.gold;
+      this.player.health = gameData.player.health;
+      this.player.maxHealth = gameData.player.maxHealth;
+      
+      // Restore inventory
+      this.player.inventory.potions = gameData.player.inventory.potions;
+      
+      // Restore weapon
+      const savedWeapon = weapons.find(w => w.name === gameData.player.currentWeapon.name);
+      this.player.currentWeapon = savedWeapon || weapons[0];
+    }
+  }
+
+  saveGame() {
+    const gameData = {
+      player: {
+        level: this.player.level,
+        xp: this.player.xp,
+        gold: this.player.gold,
+        health: this.player.health,
+        maxHealth: this.player.maxHealth,
+        inventory: {
+          potions: this.player.inventory.potions
+        },
+        currentWeapon: {
+          name: this.player.currentWeapon.name
+        }
+      }
+    };
+    localStorage.setItem('rpgGameSave', JSON.stringify(gameData));
   }
 
   initialize() {
@@ -257,6 +300,7 @@ export class Game {
       // Return to town
       this.currentLocation = this.locations.town;
       this.currentMonster = null;
+      this.saveGame(); // Save after getting rewards
       this.updateUI();
       return;
     }
@@ -312,6 +356,7 @@ export class Game {
       this.player.gold -= price;
       this.player.inventory.potions[size]++;
       this.ui.setText(`You bought a ${size} potion for ${price} gold.`);
+      this.saveGame(); // Save after buying potion
     } else {
       this.ui.setText(`You don't have enough gold to buy a ${size} potion.`);
     }
@@ -323,6 +368,7 @@ export class Game {
       this.player.gold -= weapon.price;
       this.player.currentWeapon = weapon;
       this.ui.setText(`You bought a ${weapon.name}!`);
+      this.saveGame(); // Save after buying weapon
     } else {
       this.ui.setText("You don't have enough gold!");
     }
@@ -341,6 +387,7 @@ export class Game {
       
       this.ui.setText(`You used a ${size} potion and recovered ${actualHeal} health.`);
       console.log('Healed for:', actualHeal, 'New health:', this.player.health);
+      this.saveGame(); // Save after using potion
     } else if (this.player.health >= this.player.maxHealth) {
       this.ui.setText("You are already at full health!");
     } else {
