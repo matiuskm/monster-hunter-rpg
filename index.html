@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Hunter RPG</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="game">
+        <div id="stats">
+            <h2>Player Stats</h2>
+            <div class="stat-row">
+                <span class="stat-label">Level:</span> <span id="levelText">1</span>
+                <span class="stat-label">XP:</span> <span id="xpText">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Health:</span> <span id="healthText">100</span>/<span id="maxHealthText">100</span>
+                <span class="stat-label">Gold:</span> <span id="goldText">50</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Weapon:</span> <span id="weaponText">Stick</span>
+                <span class="stat-label">Power:</span> <span id="powerText">5</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Potions:</span> <span id="potionsText">0</span>
+            </div>
+        </div>
+        
+        <div id="monsterStats">
+            <h2>Monster</h2>
+            <div class="stat-row">
+                <span id="monsterName"></span>
+                <span id="monsterHealth"></span>
+            </div>
+        </div>
+        
+        <div id="text">Welcome to Monster Hunter RPG! Click "How to Play" to learn the basics.</div>
+        <div id="controls"></div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="howToPlayModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>How to Play Monster Hunter RPG</h2>
+            
+            <h3>Getting Started</h3>
+            <p>Welcome to Monster Hunter RPG! You are a brave adventurer setting out to hunt monsters and become stronger.</p>
+            
+            <h3>Basic Actions</h3>
+            <ul>
+                <li>Hunt Monsters: Enter the cave to find monsters to fight</li>
+                <li>Visit Shop: Buy potions and upgrade your equipment</li>
+                <li>Use Potions: Heal yourself during or outside of combat</li>
+            </ul>
+            
+            <h3>Combat</h3>
+            <ul>
+                <li>Attack: Deal damage to the monster</li>
+                <li>Run: Try to escape from combat (not always successful)</li>
+                <li>Use Potions: Heal yourself during combat</li>
+            </ul>
+            
+            <h3>Potions</h3>
+            <ul>
+                <li>Small Potion: Heals 20 HP (10 gold)</li>
+                <li>Medium Potion: Heals 40 HP (30 gold)</li>
+                <li>Large Potion: Heals 60 HP (100 gold)</li>
+            </ul>
+            
+            <h3>Tips</h3>
+            <ul>
+                <li>Keep an eye on your health and use potions when needed</li>
+                <li>Buy better weapons to deal more damage</li>
+                <li>Fight monsters near your level for best results</li>
+                <li>Run away if you're low on health</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
